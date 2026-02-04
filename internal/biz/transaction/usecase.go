@@ -102,7 +102,7 @@ func (u Usecase) PrepareTransaction(ctx context.Context, transaction *Transactio
 		res, _, err := u.client.TransactionsAPI.EstimateFee(u.client.WithContext(ctx)).EstimateFeeParams(CoboWaas2.EstimateFeeParams{
 			EstimateContractCallFeeParams: nil,
 			EstimateTransferFeeParams: &CoboWaas2.EstimateTransferFeeParams{
-				RequestId:   "",
+				RequestId:   CoboWaas2.PtrString(uuid.New().String()),
 				RequestType: CoboWaas2.ESTIMATEFEEREQUESTTYPE_TRANSFER,
 				Source: CoboWaas2.TransferSource{
 					CustodialTransferSource: nil,
@@ -117,7 +117,7 @@ func (u Usecase) PrepareTransaction(ctx context.Context, transaction *Transactio
 					SafeTransferSource: nil,
 				},
 				TokenId: transaction.TokenID,
-				Destination: CoboWaas2.TransferDestination{
+				Destination: &CoboWaas2.TransferDestination{
 					AddressTransferDestination: &CoboWaas2.AddressTransferDestination{
 						DestinationType: CoboWaas2.TRANSFERDESTINATIONTYPE_ADDRESS,
 						AccountOutput:   nil,

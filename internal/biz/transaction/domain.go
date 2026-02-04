@@ -180,7 +180,7 @@ func (f *Fee) ToUtxoTransactionFee() *CoboWaas2.TransactionRequestUtxoFee {
 		return nil
 	}
 	return &CoboWaas2.TransactionRequestUtxoFee{
-		FeeRate:      f.FeePerByte.String(),
+		FeeRate:      CoboWaas2.PtrString(f.FeePerByte.String()),
 		MaxFeeAmount: CoboWaas2.PtrString(f.MaxFee.String()),
 		FeeType:      CoboWaas2.FEETYPE_UTXO,
 		TokenId:      f.TokenID,
